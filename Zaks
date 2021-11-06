@@ -130,7 +130,6 @@ local function SEBNKSP_fake_script()
 	local Amount = script.Parent.Amount
 	local title = script.Parent.Title
 	local Warning = script.Parent.Warning
-	local Close = script.Parent.Close
 	local frame = script.Parent.Parent.Main
 	
 	Drop.MouseButton1Click:Connect(function()
