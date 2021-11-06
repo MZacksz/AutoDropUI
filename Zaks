@@ -10,6 +10,7 @@ local AutoDrop_2 = Instance.new("TextButton")
 local UICorner_3 = Instance.new("UICorner")
 local Warning = Instance.new("TextLabel")
 local UICorner_4 = Instance.new("UICorner")
+local Tutorial = Instance.new("TextLabel")
 
 AutoDrop.Name = "AutoDrop"
 AutoDrop.Parent = game.CoreGui
@@ -92,7 +93,7 @@ Warning.Name = "Warning"
 Warning.Parent = Main
 Warning.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 Warning.BackgroundTransparency = 1.000
-Warning.Position = UDim2.new(0, 0,0.179, 0)
+Warning.Position = UDim2.new(0, 0, 0.178539813, 0)
 Warning.Size = UDim2.new(1.00000012, 0, 0.0719251186, 0)
 Warning.Visible = false
 Warning.Font = Enum.Font.GothamBlack
@@ -105,7 +106,20 @@ Warning.TextWrapped = true
 UICorner_4.CornerRadius = UDim.new(0, 15)
 UICorner_4.Parent = Main
 
-local function VNXVLOO_fake_script()
+Tutorial.Name = "Tutorial"
+Tutorial.Parent = Main
+Tutorial.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Tutorial.BackgroundTransparency = 1.000
+Tutorial.Position = UDim2.new(0.0916879773, 0, -0.00236469507, 0)
+Tutorial.Size = UDim2.new(0.811530352, 0, 0.144286871, 0)
+Tutorial.Font = Enum.Font.GothamBlack
+Tutorial.Text = "V to visible gui or unvisible it back!"
+Tutorial.TextColor3 = Color3.fromRGB(255, 179, 0)
+Tutorial.TextScaled = true
+Tutorial.TextSize = 14.000
+Tutorial.TextWrapped = true
+
+local function SEBNKSP_fake_script()
 	local script = Instance.new('LocalScript', Main)
 
 	_G.Drop = false
@@ -116,6 +130,8 @@ local function VNXVLOO_fake_script()
 	local Amount = script.Parent.Amount
 	local title = script.Parent.Title
 	local Warning = script.Parent.Warning
+	local Close = script.Parent.Close
+	local frame = script.Parent.Parent.Main
 	
 	Drop.MouseButton1Click:Connect(function()
 		if _G.Drop == false then
@@ -137,7 +153,6 @@ local function VNXVLOO_fake_script()
 	script.Parent.AutoDrop.MouseButton1Click:Connect(function()
 		if _G.AutoDrops == false then
 			_G.AutoDrops = true
-			title.Text = "Auto Drop: ON"
 			if Amount.Text == "" then
 				Warning.Visible = true
 				wait(1)
@@ -152,12 +167,42 @@ local function VNXVLOO_fake_script()
 				if _G.AutoDrops == false then
 					break
 				end
-				title.Text = "Auto Drop: ON"
 			end
+			title.Text = "Auto Drop: ON"
 		else
 			_G.AutoDrops = false
 			title.Text = "Auto Drop: OFF"
 		end
 	end)
+	
+	script.Parent.Close.MouseButton1Click:Connect(function()
+		frame:Destroy()
+	end)
 end
-coroutine.wrap(VNXVLOO_fake_script)()
+coroutine.wrap(SEBNKSP_fake_script)()
+local function YPLV_fake_script()
+	local script = Instance.new('LocalScript', Main)
+
+	local frame = script.Parent.Parent.Main
+	local hotkey = Enum.KeyCode.V
+	
+	local UIS = game:GetService("UserInputService")
+	local open = false
+	
+	
+	
+	UIS.InputBegan:Connect(function(key, gp)
+		if key.KeyCode == hotkey then
+			if UIS:GetFocusedTextBox() == nil then
+				if open == false then
+					open = true 
+					frame.Visible = open
+				elseif open == true then
+					open = false
+					frame.Visible = open
+				end
+			end
+		end
+	end)
+end
+coroutine.wrap(YPLV_fake_script)()
