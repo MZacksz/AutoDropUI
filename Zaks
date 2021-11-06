@@ -135,7 +135,7 @@ local function VNXVLOO_fake_script()
 	end)
 	
 	script.Parent.AutoDrop.MouseButton1Click:Connect(function()
-		if _G.AutoDrops == false and title.Text == "Auto Drop: OFF" then
+		if _G.AutoDrops == false then
 			_G.AutoDrops = true
 			title.Text = "Auto Drop: ON"
 			if Amount.Text == "" then
@@ -152,6 +152,7 @@ local function VNXVLOO_fake_script()
 				if _G.AutoDrops == false then
 					break
 				end
+				title.Text = "Auto Drop: ON"
 			end
 		else
 			_G.AutoDrops = false
