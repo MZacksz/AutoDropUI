@@ -119,10 +119,10 @@ Tutorial.TextScaled = true
 Tutorial.TextSize = 14.000
 Tutorial.TextWrapped = true
 
-local function SEBNKSP_fake_script()
+local function QWPRNO_fake_script()
 	local script = Instance.new('LocalScript', Main)
 
-	_G.Drop = false
+	_G.Drops = false
 	_G.AutoDrops = false
 	
 	local Drop = script.Parent.Drop
@@ -130,11 +130,10 @@ local function SEBNKSP_fake_script()
 	local Amount = script.Parent.Amount
 	local title = script.Parent.Title
 	local Warning = script.Parent.Warning
-	local frame = script.Parent.Parent.Main
 	
 	Drop.MouseButton1Click:Connect(function()
-		if _G.Drop == false then
-			_G.Drop = true
+		if _G.Drops == false then
+			_G.Drops = true
 			if Amount.Text == "" then
 				Warning.Visible = true
 				wait(1)
@@ -144,13 +143,11 @@ local function SEBNKSP_fake_script()
 			local A_2 = script.Parent.Amount.Text
 			local Event = game:GetService("ReplicatedStorage").MainEvent
 			Event:FireServer(A_1, A_2)
-		else
-			_G.Drop = false
 		end
 	end)
 	
-	script.Parent.AutoDrop.MouseButton1Click:Connect(function()
-		if _G.AutoDrops == false then
+	AutoDrop.MouseButton1Click:Connect(function()
+		if _G.AutoDrops == false and title.Text == "Auto Drop: OFF" then
 			_G.AutoDrops = true
 			if Amount.Text == "" then
 				Warning.Visible = true
@@ -162,20 +159,20 @@ local function SEBNKSP_fake_script()
 				local A_2 = script.Parent.Amount.Text
 				local Event = game:GetService("ReplicatedStorage").MainEvent
 				Event:FireServer(A_1, A_2)
-				wait(5)
+				wait(2)
 				if _G.AutoDrops == false then
 					break
 				end
 			end
 			title.Text = "Auto Drop: ON"
 		else
-			_G.AutoDrops = false
+			_G.AutoDrops = true
 			title.Text = "Auto Drop: OFF"
 		end
 	end)
 end
-coroutine.wrap(SEBNKSP_fake_script)()
-local function YPLV_fake_script()
+coroutine.wrap(QWPRNO_fake_script)()
+local function MWDUABA_fake_script()
 	local script = Instance.new('LocalScript', Main)
 
 	local frame = script.Parent.Parent.Main
@@ -198,4 +195,4 @@ local function YPLV_fake_script()
 		end
 	end)
 end
-coroutine.wrap(YPLV_fake_script)()
+coroutine.wrap(MWDUABA_fake_script)()
