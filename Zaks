@@ -1,0 +1,162 @@
+local AutoDrop = Instance.new("ScreenGui")
+local Main = Instance.new("Frame")
+local UIGradient = Instance.new("UIGradient")
+local Title = Instance.new("TextLabel")
+local Drop = Instance.new("TextButton")
+local UICorner = Instance.new("UICorner")
+local Amount = Instance.new("TextBox")
+local UICorner_2 = Instance.new("UICorner")
+local AutoDrop_2 = Instance.new("TextButton")
+local UICorner_3 = Instance.new("UICorner")
+local Warning = Instance.new("TextLabel")
+local UICorner_4 = Instance.new("UICorner")
+
+AutoDrop.Name = "AutoDrop"
+AutoDrop.Parent = game.CoreGui
+AutoDrop.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+Main.Name = "Main"
+Main.Parent = AutoDrop
+Main.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Main.BorderSizePixel = 0
+Main.Position = UDim2.new(0.109808758, 0, 0.0883435681, 0)
+Main.Size = UDim2.new(0.121109188, 0, 0.305214703, 0)
+Main.Active = true
+Main.Draggable = true
+
+UIGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(0, 123, 255)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(4, 73, 111))}
+UIGradient.Rotation = 90
+UIGradient.Parent = Main
+
+Title.Name = "Title"
+Title.Parent = Main
+Title.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Title.BackgroundTransparency = 1.000
+Title.Position = UDim2.new(0, 0, 0.894117713, 0)
+Title.Size = UDim2.new(1.00000012, 0, 0.0719251186, 0)
+Title.Font = Enum.Font.GothamBlack
+Title.Text = "Auto Drop: OFF"
+Title.TextColor3 = Color3.fromRGB(255, 179, 0)
+Title.TextScaled = true
+Title.TextSize = 14.000
+Title.TextWrapped = true
+
+Drop.Name = "Drop"
+Drop.Parent = Main
+Drop.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Drop.BorderSizePixel = 0
+Drop.Position = UDim2.new(0.126124993, 0, 0.610216975, 0)
+Drop.Size = UDim2.new(0.747750044, 0, 0.106482603, 0)
+Drop.Font = Enum.Font.FredokaOne
+Drop.Text = "Drop"
+Drop.TextColor3 = Color3.fromRGB(0, 209, 255)
+Drop.TextScaled = true
+Drop.TextSize = 14.000
+Drop.TextWrapped = true
+
+UICorner.CornerRadius = UDim.new(0, 10)
+UICorner.Parent = Drop
+
+Amount.Name = "Amount"
+Amount.Parent = Main
+Amount.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Amount.BorderSizePixel = 0
+Amount.Position = UDim2.new(0.163000852, 0, 0.281407028, 0)
+Amount.Size = UDim2.new(0.670123816, 0, 0.0858994946, 0)
+Amount.Font = Enum.Font.SourceSans
+Amount.PlaceholderColor3 = Color3.fromRGB(255, 191, 0)
+Amount.PlaceholderText = "Amount"
+Amount.Text = ""
+Amount.TextColor3 = Color3.fromRGB(255, 191, 0)
+Amount.TextSize = 14.000
+
+UICorner_2.Parent = Amount
+
+AutoDrop_2.Name = "AutoDrop"
+AutoDrop_2.Parent = Main
+AutoDrop_2.BackgroundColor3 = Color3.fromRGB(0, 255, 179)
+AutoDrop_2.BorderSizePixel = 0
+AutoDrop_2.Position = UDim2.new(0.141406327, 0, 0.453433096, 0)
+AutoDrop_2.Size = UDim2.new(0.712093592, 0, 0.114522807, 0)
+AutoDrop_2.Font = Enum.Font.FredokaOne
+AutoDrop_2.Text = "Auto Drop"
+AutoDrop_2.TextColor3 = Color3.fromRGB(0, 38, 255)
+AutoDrop_2.TextScaled = true
+AutoDrop_2.TextSize = 14.000
+AutoDrop_2.TextWrapped = true
+
+UICorner_3.CornerRadius = UDim.new(0, 10)
+UICorner_3.Parent = AutoDrop_2
+
+Warning.Name = "Warning"
+Warning.Parent = Main
+Warning.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Warning.BackgroundTransparency = 1.000
+Warning.Position = UDim2.new(0, 0, 0.262961924, 0)
+Warning.Size = UDim2.new(1.00000012, 0, 0.0719251186, 0)
+Warning.Visible = false
+Warning.Font = Enum.Font.GothamBlack
+Warning.Text = "You have no amount to drop."
+Warning.TextColor3 = Color3.fromRGB(255, 179, 0)
+Warning.TextScaled = true
+Warning.TextSize = 14.000
+Warning.TextWrapped = true
+
+UICorner_4.CornerRadius = UDim.new(0, 15)
+UICorner_4.Parent = Main
+
+local function VNXVLOO_fake_script()
+	local script = Instance.new('LocalScript', Main)
+
+	_G.Drop = false
+	_G.AutoDrops = false
+	
+	local Drop = script.Parent.Drop
+	local AutoDrop = script.Parent.AutoDrop
+	local Amount = script.Parent.Amount
+	local title = script.Parent.Title
+	local Warning = script.Parent.Warning
+	
+	Drop.MouseButton1Click:Connect(function()
+		if _G.Drop == false then
+			_G.Drop = true
+			if Amount.Text == "" then
+				Warning.Visible = true
+				wait(1)
+				Warning.Visible = false
+			end
+			local A_1 = "DropMoney"
+			local A_2 = script.Parent.Amount.Text
+			local Event = game:GetService("ReplicatedStorage").MainEvent
+			Event:FireServer(A_1, A_2)
+		else
+			_G.Drop = false
+		end
+	end)
+	
+	script.Parent.AutoDrop.MouseButton1Click:Connect(function()
+		if _G.AutoDrops == false and title.Text == "Auto Drop: OFF" then
+			_G.AutoDrops = true
+			title.Text = "Auto Drop: ON"
+			if Amount.Text == "" then
+				Warning.Visible = true
+				wait(1)
+				Warning.Visible = false
+			end
+			while true do
+				local A_1 = "DropMoney"
+				local A_2 = script.Parent.Amount.Text
+				local Event = game:GetService("ReplicatedStorage").MainEvent
+				Event:FireServer(A_1, A_2)
+				wait(5)
+				if _G.AutoDrops == false then
+					break
+				end
+			end
+		else
+			_G.AutoDrops = false
+			title.Text = "Auto Drop: OFF"
+		end
+	end)
+end
+coroutine.wrap(VNXVLOO_fake_script)()
