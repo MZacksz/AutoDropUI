@@ -134,7 +134,7 @@ local function QWPRNO_fake_script()
 	Drop.MouseButton1Click:Connect(function()
 		if _G.Drops == false then
 			_G.Drops = true
-			if Amount.Text == "" then
+			if Amount.Text == "" and Warning.Visible == false then
 				Warning.Visible = true
 				wait(1)
 				Warning.Visible = false
@@ -149,7 +149,7 @@ local function QWPRNO_fake_script()
 	AutoDrop.MouseButton1Click:Connect(function()
 		if _G.AutoDrops == false and title.Text == "Auto Drop: OFF" then
 			_G.AutoDrops = true
-			if Amount.Text == "" then
+			if Amount.Text == "" and Warning.Visible == false then
 				Warning.Visible = true
 				wait(1)
 				Warning.Visible = false
