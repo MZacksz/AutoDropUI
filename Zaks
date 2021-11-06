@@ -8,9 +8,7 @@ local Amount = Instance.new("TextBox")
 local UICorner_2 = Instance.new("UICorner")
 local AutoDrop_2 = Instance.new("TextButton")
 local UICorner_3 = Instance.new("UICorner")
-local Warning = Instance.new("TextLabel")
 local UICorner_4 = Instance.new("UICorner")
-local Tutorial = Instance.new("TextLabel")
 
 AutoDrop.Name = "AutoDrop"
 AutoDrop.Parent = game.CoreGui
@@ -22,8 +20,6 @@ Main.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 Main.BorderSizePixel = 0
 Main.Position = UDim2.new(0.109808758, 0, 0.0883435681, 0)
 Main.Size = UDim2.new(0.121109188, 0, 0.305214703, 0)
-Main.Active = true
-Main.Draggable = true
 
 UIGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(0, 123, 255)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(4, 73, 111))}
 UIGradient.Rotation = 90
@@ -62,7 +58,7 @@ Amount.Name = "Amount"
 Amount.Parent = Main
 Amount.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 Amount.BorderSizePixel = 0
-Amount.Position = UDim2.new(0.163000852, 0, 0.281407028, 0)
+Amount.Position = UDim2.new(0.157907069, 0, 0.313567847, 0)
 Amount.Size = UDim2.new(0.670123816, 0, 0.0858994946, 0)
 Amount.Font = Enum.Font.SourceSans
 Amount.PlaceholderColor3 = Color3.fromRGB(255, 191, 0)
@@ -89,55 +85,26 @@ AutoDrop_2.TextWrapped = true
 UICorner_3.CornerRadius = UDim.new(0, 10)
 UICorner_3.Parent = AutoDrop_2
 
-Warning.Name = "Warning"
-Warning.Parent = Main
-Warning.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Warning.BackgroundTransparency = 1.000
-Warning.Position = UDim2.new(0, 0, 0.178539813, 0)
-Warning.Size = UDim2.new(1.00000012, 0, 0.0719251186, 0)
-Warning.Visible = false
-Warning.Font = Enum.Font.GothamBlack
-Warning.Text = "You have no amount to drop."
-Warning.TextColor3 = Color3.fromRGB(255, 179, 0)
-Warning.TextScaled = true
-Warning.TextSize = 14.000
-Warning.TextWrapped = true
-
 UICorner_4.CornerRadius = UDim.new(0, 15)
 UICorner_4.Parent = Main
 
-Tutorial.Name = "Tutorial"
-Tutorial.Parent = Main
-Tutorial.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Tutorial.BackgroundTransparency = 1.000
-Tutorial.Position = UDim2.new(0.0916879773, 0, -0.00236469507, 0)
-Tutorial.Size = UDim2.new(0.811530352, 0, 0.144286871, 0)
-Tutorial.Font = Enum.Font.GothamBlack
-Tutorial.Text = "V to visible gui or unvisible it back!"
-Tutorial.TextColor3 = Color3.fromRGB(255, 179, 0)
-Tutorial.TextScaled = true
-Tutorial.TextSize = 14.000
-Tutorial.TextWrapped = true
-
-local function QWPRNO_fake_script()
+local function XDJOGMV_fake_script()
 	local script = Instance.new('LocalScript', Main)
 
-	_G.Drops = false
-	_G.AutoDrops = false
+	local Drops = false
+	local AutoDrops = false
 	
 	local Drop = script.Parent.Drop
 	local AutoDrop = script.Parent.AutoDrop
 	local Amount = script.Parent.Amount
 	local title = script.Parent.Title
-	local Warning = script.Parent.Warning
+	local warning = "You cannot drop with no amount."
 	
 	Drop.MouseButton1Click:Connect(function()
-		if _G.Drops == false then
-			_G.Drops = true
-			if Amount.Text == "" and Warning.Visible == false then
-				Warning.Visible = true
-				wait(1)
-				Warning.Visible = false
+		if Drops == false then
+			Drops = true
+			if Amount.Text == "" then
+				print(warning)
 			end
 			local A_1 = "DropMoney"
 			local A_2 = script.Parent.Amount.Text
@@ -147,52 +114,23 @@ local function QWPRNO_fake_script()
 	end)
 	
 	AutoDrop.MouseButton1Click:Connect(function()
-		if _G.AutoDrops == false and title.Text == "Auto Drop: OFF" then
-			_G.AutoDrops = true
-			if Amount.Text == "" and Warning.Visible == false then
-				Warning.Visible = true
-				wait(1)
-				Warning.Visible = false
-			end
+		if AutoDrops == false then
+			AutoDrops = true
 			while true do
 				local A_1 = "DropMoney"
-				local A_2 = script.Parent.Amount.Text
+				local A_2 = 10000
 				local Event = game:GetService("ReplicatedStorage").MainEvent
 				Event:FireServer(A_1, A_2)
 				wait(2)
-				if _G.AutoDrops == false then
+				if AutoDrops == false then
 					break
 				end
 			end
 			title.Text = "Auto Drop: ON"
 		else
-			_G.AutoDrops = true
+			AutoDrops = true
 			title.Text = "Auto Drop: OFF"
 		end
 	end)
 end
-coroutine.wrap(QWPRNO_fake_script)()
-local function MWDUABA_fake_script()
-	local script = Instance.new('LocalScript', Main)
-
-	local frame = script.Parent.Parent.Main
-	local hotkey = Enum.KeyCode.V
-	
-	local UIS = game:GetService("UserInputService")
-	local open = false
-	
-	UIS.InputBegan:Connect(function(key, gp)
-		if key.KeyCode == hotkey then
-			if UIS:GetFocusedTextBox() == nil then
-				if open == false then
-					open = true 
-					frame.Visible = open
-				elseif open == true then
-					open = false
-					frame.Visible = open
-				end
-			end
-		end
-	end)
-end
-coroutine.wrap(MWDUABA_fake_script)()
+coroutine.wrap(XDJOGMV_fake_script)()
