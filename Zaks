@@ -174,10 +174,6 @@ local function SEBNKSP_fake_script()
 			title.Text = "Auto Drop: OFF"
 		end
 	end)
-	
-	script.Parent.Close.MouseButton1Click:Connect(function()
-		frame:Destroy()
-	end)
 end
 coroutine.wrap(SEBNKSP_fake_script)()
 local function YPLV_fake_script()
@@ -188,8 +184,6 @@ local function YPLV_fake_script()
 	
 	local UIS = game:GetService("UserInputService")
 	local open = false
-	
-	
 	
 	UIS.InputBegan:Connect(function(key, gp)
 		if key.KeyCode == hotkey then
