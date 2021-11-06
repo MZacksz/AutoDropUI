@@ -116,6 +116,7 @@ local function XDJOGMV_fake_script()
 	AutoDrop.MouseButton1Click:Connect(function()
 		if AutoDrops == false then
 			AutoDrops = true
+			title.Text = "Auto Drop: ON"
 			while true do
 				local A_1 = "DropMoney"
 				local A_2 = 10000
@@ -126,7 +127,6 @@ local function XDJOGMV_fake_script()
 					break
 				end
 			end
-			title.Text = "Auto Drop: ON"
 		else
 			AutoDrops = true
 			title.Text = "Auto Drop: OFF"
